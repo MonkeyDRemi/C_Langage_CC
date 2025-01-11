@@ -27,5 +27,6 @@ typedef struct Table {
 // Fonctions principales
 Table *create_table(const char *name);
 void free_table(Table *table);
+void insert_row(Table *table, Row row);
 
 #endif

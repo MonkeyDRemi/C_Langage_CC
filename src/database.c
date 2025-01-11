@@ -25,3 +25,12 @@ void free_table(Table *table) {
     free(table->name);
     free(table);
 }
+
+
+// Insertion d'une ligne dans la table
+void insert_row(Table *table, Row row) {
+    Node *new_node = malloc(sizeof(Node));
+    new_node->row = row;
+    new_node->next = table->head;
+    table->head = new_node;
+}
