@@ -3,6 +3,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+void print_row(Row *row) {
+    if (row) {
+        printf("ID: %d, Nom: %s, Email: %s, Age: %d\n", row->id, row->name, row->email, row->age);
+    } else {
+        printf("Ligne non trouvée\n");
+    }
+}
+
+
 int main() {
     printf("Bienvenue dans le gestionnaire de base de données.\n");
     
@@ -31,6 +41,15 @@ int main() {
             Row new_row = {id, strdup(name), strdup(email), age};
             insert_row(table, new_row);
             printf("Ligne insérée : ID=%d, Nom=%s, Email=%s, Age=%d\n", id, name, email, age);
+	} else if (strncmp(command, "SELECT", 6) == 0) {
+            if (!table) {
+                printf("Aucune table n'existe. Utilisez CREATE pour en créer une.\n");
+                continue;
+            }
+            int id;
+            sscanf(command + 7, "%d", &id);
+            Row *row = select_row(table, id);
+            print_row(row);
         } else if (strncmp(command, "EXIT", 4) == 0) {
             printf("Quitter...\n");
             break;

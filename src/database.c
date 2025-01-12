@@ -34,3 +34,16 @@ void insert_row(Table *table, Row row) {
     new_node->next = table->head;
     table->head = new_node;
 }
+
+
+// Recherche d'une ligne par ID
+Row *select_row(Table *table, int id) {
+    Node *current = table->head;
+    while (current) {
+        if (current->row.id == id) {
+            return &current->row;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
