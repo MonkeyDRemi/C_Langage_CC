@@ -47,3 +47,14 @@ Row *select_row(Table *table, int id) {
     }
     return NULL;
 }
+
+
+
+// Affichage de toutes les lignes d'une table
+void print_all_rows(Table *table) {
+    Node *current = table->head;
+    while (current) {
+        printf("ID: %d, Nom: %s, Email: %s, Age: %d\n", current->row.id, current->row.name, current->row.email, current->row.age);
+        current = current->next;
+    }
+}

@@ -50,7 +50,13 @@ int main() {
             sscanf(command + 7, "%d", &id);
             Row *row = select_row(table, id);
             print_row(row);
-        } else if (strncmp(command, "EXIT", 4) == 0) {
+         } else if (strncmp(command, "SHOW", 4) == 0) {
+            if (!table) {
+                printf("Aucune table n'existe. Utilisez CREATE pour en créer une.\n");
+                continue;
+            }
+            print_all_rows(table);
+	} else if (strncmp(command, "EXIT", 4) == 0) {
             printf("Quitter...\n");
             break;
         } else {

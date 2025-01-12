@@ -29,5 +29,6 @@ Table *create_table(const char *name);
 void free_table(Table *table);
 void insert_row(Table *table, Row row);
 Row *select_row(Table *table, int id);
+void print_all_rows(Table *table);
 
 #endif
