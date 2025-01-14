@@ -50,6 +50,27 @@ Row *select_row(Table *table, int id) {
 
 
 
+// Suppression d'une ligne par ID
+void delete_row(Table *table, int id) {
+    Node *current = table->head;
+    Node *previous = NULL;
+
+    while (current) {
+        if (current->row.id == id) {
+            if (previous) {
+                previous->next = current->next;
+            } else {
+                table->head = current->next;
+            }
+            free(current);
+            return;
+        }
+        previous = current;
+        current = current->next;
+    }
+}
+
+
 // Affichage de toutes les lignes d'une table
 void print_all_rows(Table *table) {
     Node *current = table->head;
