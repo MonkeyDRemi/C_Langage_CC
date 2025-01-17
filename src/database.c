@@ -79,3 +79,25 @@ void print_all_rows(Table *table) {
         current = current->next;
     }
 }
+
+
+
+// Sauvegarde des données de la table dans un fichier
+void save_table(Table *table, const char *filename) {
+    FILE *file = fopen(filename, "wb");
+    if (!file) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return;
+    }
+
+    fwrite(table->name, sizeof(char), strlen(table->name) + 1, file);
+
+    Node *current = table->head;
+    while (current) {
+        fwrite(&current->row, sizeof(Row), 1, file);
+        current = current->next;
+    }
+
+    fclose(file);
+    printf("Table sauvegardée dans '%s'.\n", filename);
+}

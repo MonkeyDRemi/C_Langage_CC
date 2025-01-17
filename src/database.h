@@ -31,5 +31,6 @@ void insert_row(Table *table, Row row);
 Row *select_row(Table *table, int id);
 void print_all_rows(Table *table);
 void delete_row(Table *table, int id);
+void save_table(Table *table, const char *filename);
 
 #endif

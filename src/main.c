@@ -65,6 +65,14 @@ int main() {
             sscanf(command + 7, "%d", &id);
             delete_row(table, id);
             printf("Ligne avec ID=%d supprimée.\n", id);
+	} else if (strncmp(command, "SAVE", 4) == 0) {
+            if (!table) {
+                printf("Aucune table n'existe. Utilisez CREATE pour en créer une.\n");
+                continue;
+            }
+            char filename[256];
+            sscanf(command + 5, "%s", filename);
+            save_table(table, filename);
 	} else if (strncmp(command, "EXIT", 4) == 0) {
             printf("Quitter...\n");
             break;
