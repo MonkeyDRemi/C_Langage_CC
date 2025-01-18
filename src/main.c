@@ -73,6 +73,11 @@ int main() {
             char filename[256];
             sscanf(command + 5, "%s", filename);
             save_table(table, filename);
+	} else if (strncmp(command, "LOAD", 4) == 0) {
+            char filename[256];
+            sscanf(command + 5, "%s", filename);
+            if (table) free_table(table);
+            table = load_table(filename);
 	} else if (strncmp(command, "EXIT", 4) == 0) {
             printf("Quitter...\n");
             break;

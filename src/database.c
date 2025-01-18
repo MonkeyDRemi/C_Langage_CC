@@ -101,3 +101,27 @@ void save_table(Table *table, const char *filename) {
     fclose(file);
     printf("Table sauvegardée dans '%s'.\n", filename);
 }
+
+
+// Chargement des données depuis un fichier
+Table *load_table(const char *filename) {
+    FILE *file = fopen(filename, "rb");
+    if (!file) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return NULL;
+    }
+
+    char name[256];
+    fread(name, sizeof(char), 256, file);
+
+    Table *table = create_table(name);
+
+    Row row;
+    while (fread(&row, sizeof(Row), 1, file) == 1) {
+        insert_row(table, row);
+    }
+
+    fclose(file);
+    printf("Table chargée depuis '%s'.\n", filename);
+    return table;
+}
