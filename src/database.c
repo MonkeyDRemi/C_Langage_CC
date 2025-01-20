@@ -1,7 +1,7 @@
-// database.c
 #include "database.h"
 #include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 // Création d'une nouvelle table
 Table *create_table(const char *name) {
@@ -71,22 +71,13 @@ void delete_row(Table *table, int id) {
 }
 
 
-// Affichage de toutes les lignes d'une table
-void print_all_rows(Table *table) {
-    Node *current = table->head;
-    while (current) {
-        printf("ID: %d, Nom: %s, Email: %s, Age: %d\n", current->row.id, current->row.name, current->row.email, current->row.age);
-        current = current->next;
-    }
-}
-
 
 
 // Sauvegarde des données de la table dans un fichier
 void save_table(Table *table, const char *filename) {
     FILE *file = fopen(filename, "wb");
     if (!file) {
-        perror("Erreur lors de l'ouverture du fichier");
+        perror("Erreur lors de louverture du fichier");
         return;
     }
 
@@ -107,7 +98,7 @@ void save_table(Table *table, const char *filename) {
 Table *load_table(const char *filename) {
     FILE *file = fopen(filename, "rb");
     if (!file) {
-        perror("Erreur lors de l'ouverture du fichier");
+        perror("Erreur lors de louverture du fichier");
         return NULL;
     }
 
